@@ -10,10 +10,13 @@ include_once "conexao.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+
+    <!-- Adicionar link para o arquivo CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-    
+    <div class="container">
         <h2>Tela de Cadastro</h2>
 
         <?php
@@ -21,21 +24,31 @@ include_once "conexao.php";
         if ($conexao->testarConexao()) {
             echo "Atualmente recebendo novos cadastros!";
         } else {
-        echo "Infezlimente, não estamos recebendo novos cadastros.";
+            echo "Infelizmente, não estamos recebendo novos cadastros.";
         }
-?>
-<br><br>
+        ?>
+        <br><br>
         <form action="acoes.php?acao=1" method="POST">
-            <strong>Nome:</strong>
-            <input type="text" name="nome" placeholder="Seu nome" required/>
-            <br><br><strong>E-mail:</strong>
-            <input type="email" name="email" placeholder="Seu email" required/>
-            <br><br><strong>Senha:</strong>
-            <input type="password" name="senha" placeholder="Sua senha" required/>
-            <br><br><input type="submit" value="Enviar Dados">
-            <a href="./index.php">Voltar para login</a>
+            <div class="form-group">
+                <strong>Nome:</strong>
+                <input type="text" class="form-control" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-group">
+                <strong>E-mail:</strong>
+                <input type="email" class="form-control" name="email" placeholder="Seu email" required>
+            </div>
+            <div class="form-group">
+                <strong>Senha:</strong>
+                <input type="password" class="form-control" name="senha" placeholder="Sua senha" required>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Enviar Dados">
+            <a href="./index.php" class="btn btn-link">Voltar para login</a>
         </form>
-        <br><br><br>
-</body>
-</html>
+    </div>
 
+    <!-- Adicionar scripts do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

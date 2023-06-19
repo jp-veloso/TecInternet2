@@ -4,6 +4,7 @@ include_once "conexao.php";
 
 $conexao = new conexao();
 
+
 // Verificar se o formulário foi enviado para adicionar uma nova tarefa
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $titulo = $_POST['titulo'];
@@ -31,6 +32,7 @@ if (isset($_GET['excluir'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -38,6 +40,9 @@ if (isset($_GET['excluir'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarefas Já - Página Principal</title>
+
+    <!-- Adicione o link para o arquivo CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
         table {
@@ -59,7 +64,7 @@ if (isset($_GET['excluir'])) {
 
 <!-- Botão de logout -->
 <form action="logout.php" method="post">
-  <input type="submit" value="Logout">
+  <input type="submit" value="Logout" class="btn btn-primary">
 </form>
 
 
@@ -67,20 +72,20 @@ if (isset($_GET['excluir'])) {
 <h2>Adicionar Nova Tarefa</h2>
 <form action="index.php" method="POST">
   <label for="titulo">Título:</label>
-  <input type="text" id="titulo" name="titulo" required><br><br>
+  <input type="text" id="titulo" name="titulo" required class="form-control"><br><br>
 
   <label for="descricao">Descrição:</label><br>
-  <textarea id="descricao" name="descricao"></textarea><br><br>
+  <textarea id="descricao" name="descricao" class="form-control"></textarea><br><br>
 
   <label for="data_conclusao">Data de Conclusão:</label>
-  <input type="date" id="data_conclusao" name="data_conclusao" required><br><br>
+  <input type="date" id="data_conclusao" name="data_conclusao" required class="form-control"><br><br>
 
-  <input type="submit" value="Adicionar Tarefa">
+  <input type="submit" value="Adicionar Tarefa" class="btn btn-primary">
 </form>
 
 <!-- Tabela de tarefas existentes -->
 <h2>Tarefas</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Título</th>
@@ -102,14 +107,17 @@ if (isset($_GET['excluir'])) {
         echo "<td>".$tarefa['data_criacao']."</td>";
         echo "<td>".$tarefa['data_conclusao']."</td>";
         echo "<td>";
-        echo "<a href='editar_tarefa.php?id=".$tarefa['id']."'>Editar</a>";
-        echo "<a href='index.php?excluir=".$tarefa['id']."' style='margin-left: 10px;'>Excluir</a>";
+        echo "<a href='editar_tarefa.php?id=".$tarefa['id']."' class='btn btn-primary'>Editar</a>";
+        echo "<a href='index.php?excluir=".$tarefa['id']."' class='btn btn-danger' style='margin-left: 10px;'>Excluir</a>";
         echo "</td>";
         echo "</tr>";
       }
     ?>
   </tbody>
 </table>
+
+<!-- Adicione o link para o arquivo JS do Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

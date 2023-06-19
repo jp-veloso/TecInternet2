@@ -49,23 +49,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarefas Já - Editar Tarefa</title>
+  
+  <!-- Adicionar link para o arquivo CSS do Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <h1>Tarefas Já - Editar Tarefa</h1>
+  <div class="container">
+    <h1>Tarefas Já - Editar Tarefa</h1>
 
-  <!-- Formulário para editar a tarefa -->
-  <h2>Editar Tarefa</h2>
-  <form action="editar_tarefa.php?id=<?php echo $idTarefa; ?>" method="POST">
-    <label for="titulo">Título:</label>
-    <input type="text" id="titulo" name="titulo" value="<?php echo $titulo; ?>" required><br><br>
+    <!-- Formulário para editar a tarefa -->
+    <h2>Editar Tarefa</h2>
+    <form action="editar_tarefa.php?id=<?php echo $idTarefa; ?>" method="POST">
+      <div class="form-group">
+        <label for="titulo">Título:</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" value="<?php echo $titulo; ?>" required>
+      </div>
 
-    <label for="descricao">Descrição:</label><br>
-    <textarea id="descricao" name="descricao"><?php echo $descricao; ?></textarea><br><br>
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <textarea class="form-control" id="descricao" name="descricao"><?php echo $descricao; ?></textarea>
+      </div>
 
-    <label for="data_conclusao">Data de Conclusão:</label>
-    <input type="date" id="data_conclusao" name="data_conclusao" value="<?php echo $dataConclusao; ?>" required><br><br>
+      <div class="form-group">
+        <label for="data_conclusao">Data de Conclusão:</label>
+        <input type="date" class="form-control" id="data_conclusao" name="data_conclusao" value="<?php echo $dataConclusao; ?>" required>
+      </div>
 
-    <input type="submit" value="Atualizar Tarefa">
-  </form>
+      <button type="submit" class="btn btn-primary">Atualizar Tarefa</button>
+    </form>
+  </div>
+
+  <!-- Adicionar scripts do Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
