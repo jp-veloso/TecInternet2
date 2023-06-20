@@ -62,10 +62,19 @@ if (isset($_GET['excluir'])) {
 <!-- Exibição do nome do usuário -->
 <p>Bem-vindo, <?php echo $_SESSION['nome']; ?>!</p>
 
-<!-- Botão de logout -->
-<form action="logout.php" method="post">
-  <input type="submit" value="Logout" class="btn btn-primary">
-</form>
+<!-- Botões -->
+<div class="row">
+  <div class="col-md-6">
+    <form action="logout.php" method="post">
+      <input type="submit" value="Logout" class="btn btn-primary">
+    </form>
+  </div>
+  <div class="col-md-6">
+    <a href="trocasenha.php" class="btn btn-primary">Trocar Senha</a>
+    <a href="relatorios.php" class="btn btn-primary">Relatórios</a> <!-- Botão de Relatórios -->
+  </div>
+</div>
+
 
 
 <!-- Formulário para adicionar uma nova tarefa -->
