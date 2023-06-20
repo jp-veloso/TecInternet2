@@ -30,6 +30,18 @@ if (isset($_GET['excluir'])) {
   header("Location: index.php");
   exit();
 }
+
+// Verificar se um ID de tarefa foi fornecido para marcar como concluída
+if (isset($_GET['concluir'])) {
+  $idTarefa = $_GET['concluir'];
+
+  // Marcar a tarefa como concluída no banco de dados
+  $conexao->executar("UPDATE tarefas SET concluida = 1 WHERE id = $idTarefa");
+
+  // Redirecionar para a página principal para atualizar a tabela de tarefas
+  header("Location: index.php");
+  exit();
+}
 ?>
 
 
@@ -54,6 +66,10 @@ if (isset($_GET['excluir'])) {
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+        }
+        
+        .concluida {
+            text-decoration: line-through;
         }
     </style>
 </head>
@@ -110,13 +126,16 @@ if (isset($_GET['excluir'])) {
       $arrTarefas = $conexao->executar("SELECT * FROM tarefas");
 
       foreach ($arrTarefas as $tarefa) {
-        echo "<tr>";
+        echo "<tr" . ($tarefa['concluida'] ? ' class="concluida"' : '') . ">";
         echo "<td>".$tarefa['titulo']."</td>";
         echo "<td>".$tarefa['descricao']."</td>";
         echo "<td>".$tarefa['data_criacao']."</td>";
         echo "<td>".$tarefa['data_conclusao']."</td>";
         echo "<td>";
         echo "<a href='editar_tarefa.php?id=".$tarefa['id']."' class='btn btn-primary'>Editar</a>";
+        if (!$tarefa['concluida']) {
+          echo "<a href='index.php?concluir=".$tarefa['id']."' class='btn btn-success' style='margin-left: 10px;'>Concluído</a>";
+        }
         echo "<a href='index.php?excluir=".$tarefa['id']."' class='btn btn-danger' style='margin-left: 10px;'>Excluir</a>";
         echo "</td>";
         echo "</tr>";

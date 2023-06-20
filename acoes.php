@@ -16,7 +16,7 @@ if ($acao == 1) {
         header("location: index.php?acao=1");
         die();
     } else {
-        echo "A senha não atende aos critérios mínimos: deve ter pelo menos 6 caracteres, uma letra maiúscula e um número.";
+        echo "<script>alert('A senha não atende aos critérios mínimos: deve ter pelo menos 6 caracteres, uma letra maiúscula e um número.'); window.location.href = 'cadastroUsuario.php';</script>";
     }
 }
 ?>

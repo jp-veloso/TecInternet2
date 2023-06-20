@@ -16,6 +16,7 @@ if (isset($_GET['id'])) {
     $titulo = $tarefa[0]['titulo'];
     $descricao = $tarefa[0]['descricao'];
     $dataConclusao = $tarefa[0]['data_conclusao'];
+    $concluida = $tarefa[0]['concluida'];
   } else {
     // Redirecionar para a página principal se a tarefa não for encontrada
     header("Location: index.php");
@@ -32,9 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $novoTitulo = $_POST['titulo'];
   $novaDescricao = $_POST['descricao'];
   $novaDataConclusao = $_POST['data_conclusao'];
+  $novoStatus = isset($_POST['concluida']) ? 1 : 0;
 
   // Atualizar a tarefa no banco de dados
-  $conexao->executar("UPDATE tarefas SET titulo = '$novoTitulo', descricao = '$novaDescricao', data_conclusao = '$novaDataConclusao' WHERE id = $idTarefa");
+  $conexao->executar("UPDATE tarefas SET titulo = '$novoTitulo', descricao = '$novaDescricao', data_conclusao = '$novaDataConclusao', concluida = $novoStatus WHERE id = $idTarefa");
 
   // Redirecionar para a página principal para atualizar a tabela de tarefas
   header("Location: index.php");
@@ -75,6 +77,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="date" class="form-control" id="data_conclusao" name="data_conclusao" value="<?php echo $dataConclusao; ?>" required>
       </div>
 
+      <div class="form-group">
+        <label for="concluida">Concluída:</label>
+        <input type="checkbox" id="concluida" name="concluida" <?php echo $concluida ? 'checked' : ''; ?>>
+      </div>
+
       <button type="submit" class="btn btn-primary">Atualizar Tarefa</button>
     </form>
   </div>
@@ -84,4 +91,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
